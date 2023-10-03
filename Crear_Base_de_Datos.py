@@ -17,6 +17,7 @@ mitad = len(data_total) // 2
 
 # cargamos solamente la mitad de los elementos
 data = data_total[:mitad]
+
 # Creamos un cursor para ejecutar comandos SQL
 cursor = conexion.cursor()
 
@@ -25,13 +26,13 @@ primer_elemento = data[0]
 columnas = [key for key in primer_elemento.keys()]
 
 # Creamos la tabla con las columnas guardadas en primer_elemento
-query_crear_tabla = 'CREATE TABLE IF NOT EXISTS usuarios ({})'.format(', '.join(['"{}" TEXT'.format(name) for name in columnas]))
+query_crear_tabla = 'CREATE TABLE IF NOT EXISTS pacientes ({})'.format(', '.join(['"{}" TEXT'.format(name) for name in columnas]))
 cursor.execute(query_crear_tabla)
 
 # Insertamos los datos del JSON en la tabla
 for item in data:
     placeholders = ', '.join(['?' for _ in columnas])
-    insert_query = 'INSERT INTO usuarios ({}) VALUES ({})'.format(', '.join(['"{}"'.format(name) for name in columnas]), placeholders)
+    insert_query = 'INSERT INTO pacientes ({}) VALUES ({})'.format(', '.join(['"{}"'.format(name) for name in columnas]), placeholders)
     cursor.execute(insert_query, tuple(item.values()))
 
 # Guardamos los cambios y cerramos la conexión a la base de datos
