@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir API</title>
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        </style>
+</head>
+<body>
+    <h2> Buscar Paciente </h2>
+    <input type="text" id="valor" placeholder="Ingrese Id o Email a Buscar">
+    <button type="button" onclick="buscar()">Buscar Paciente</button>
+    <br>
+    <br>
+    <table id="tabla" hidden>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Género</th>
+                <th>Plan de Salud</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody id="api-data">
+            <!-- Aquí se agregarán las filas de datos -->
+        </tbody>
+    </table>
+    <br>
+    <h2> Registrar Paciente </h2>
+    <form id="formulario">
+        <input type="text" id="nombre" placeholder="Nombre">
+        <br><br>
+        <input type="text" id="apellido" placeholder="Apellido">
+        <br><br>
+        <input type="text" id="correo" placeholder="Correo">
+        <br><br>
+        <input type="text" id="genero" placeholder="Género">
+        <br><br>
+        <input type="text" id="plan" placeholder="Plan de Salud">
+        <br><br>
+        <input type="text" id="telefono" placeholder="Teléfono">
+        <br><br>
+        <button type="button" onclick="insertar()">Ingresar Paciente</button>
+    </form>
+    <script src="home.js"></script>      
+</body>
+</html>
