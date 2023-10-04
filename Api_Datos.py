@@ -57,18 +57,11 @@ def insertar_paciente(paciente: Paciente):
     conexion = connect_to_db()
     cursor = conexion.cursor()
     try:
-        # Generamos la consulta para obtener los id de los pacientes
-        cursor.execute("SELECT id FROM pacientes")
-        todos_los_ids = cursor.fetchall()
+        # Extraemos el ultimo id existente en la base de datos y le sumamos 1
+        cursor.execute("SELECT MAX(id) FROM pacientes")
+        max_id = cursor.fetchone()[0]
+        nuevo_id = str(max_id + 1) if max_id is not None else "1"
 
-        # Si encontramos id's los convertimos a numero, extraemos el mayor y sumamos 1
-        if todos_los_ids:
-            ids_numericos = [int(id[0]) for id in todos_los_ids]
-            max_id = max(ids_numericos)
-            nuevo_id = str(max_id + 1)
-        # si no encontramos id's definimos 1 como id
-        else:
-            nuevo_id = "1"
         # Ejecumanos la consulta para la inyeccion de los datos 
         cursor.execute(
             "INSERT INTO pacientes(id, first_name, last_name, email, gender, [Plan de Salud], phone) VALUES (?, ?, ?, ?, ?, ?, ?)",

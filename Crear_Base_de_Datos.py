@@ -26,7 +26,7 @@ primer_elemento = data[0]
 columnas = [key for key in primer_elemento.keys()]
 
 # Creamos la tabla con las columnas guardadas en primer_elemento
-query_crear_tabla = 'CREATE TABLE IF NOT EXISTS pacientes ({})'.format(', '.join(['"{}" TEXT'.format(name) for name in columnas]))
+query_crear_tabla = 'CREATE TABLE IF NOT EXISTS pacientes (id INTEGER PRIMARY KEY, {})'.format(', '.join(['"{}" TEXT'.format(name) for name in columnas[1:]]))
 cursor.execute(query_crear_tabla)
 
 # Insertamos los datos del JSON en la tabla
